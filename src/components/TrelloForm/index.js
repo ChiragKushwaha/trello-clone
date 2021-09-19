@@ -14,7 +14,7 @@ const TrelloForm = React.memo(
     };
 
     return (
-      <div className={`w-full mb-[8px]`}>
+      <div className={`w-[284px] mb-[8px]`}>
         <Card className={`w-full pt-[6px] px-[8px] ${list ? "" : "space-y-2"}`}>
           {list ? null : (
             <input
