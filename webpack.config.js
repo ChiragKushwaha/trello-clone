@@ -22,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|svg|gif)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         type: "asset",
         // takes care of inline ( 8kb or less ) / resource , parser set to inline images less than 8kb else create a seperate folder for images
         parser: {
@@ -32,13 +32,27 @@ module.exports = {
         },
       },
       {
+        test: /\.svg$/,
+        use: {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  removeViewBox: false,
+                  removeDimensions: true,
+                },
+              ],
+            },
+          },
+        },
+      },
+      {
         test: /\.css$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: "" },
-          },
+          mode === "development" ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
+          "postcss-loader",
         ],
       },
       {

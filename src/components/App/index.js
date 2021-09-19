@@ -1,14 +1,7 @@
-import "./style.css";
-import TrelloBody from "../TrelloBody";
-import TrelloHeader from "../TrelloHeader";
+import AppRouter from "../../routes";
 
 const App = () => {
-  return (
-    <div className={`main`}>
-      <TrelloHeader />
-      <TrelloBody />
-    </div>
-  );
+  return <AppRouter />;
 };
 
 export default App;

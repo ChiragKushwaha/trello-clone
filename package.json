@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve",
+    "dev": "TAILWIND=jit TAILWIND_MODE=watch webpack serve",
     "watch": "webpack --watch",
     "build": "NODE_ENV=production webpack",
     "build-dev": "webpack",
@@ -23,8 +23,11 @@
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.3.0",
-    "postcss": "^7",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
     "react-refresh": "^0.10.0",
+    "style-loader": "^3.2.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1"
@@ -35,10 +38,26 @@
     "@mui/icons-material": "^5.0.0",
     "@mui/material": "^5.0.0",
     "@mui/styled-engine-sc": "^5.0.0",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@svgr/webpack": "^5.5.0",
     "clean-webpack-plugin": "^4.0.0",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
+    "react-spring": "^9.2.4",
+    "react-textarea-autosize": "^8.3.3",
+    "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
-  }
+    "uuidv4": "^5.0.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -1,29 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 
 import TrelloSidebar from "../TrelloSidebar";
-import "./style.css";
+import TrelloBoard from "../TrelloBoard";
 
-const TrelloBody = () => {
-  return (
-    <div
-      id="body"
-      style={{
-        position: "relative",
-        height: "calc( 100vh - 44px )",
-        display: "flex",
-      }}
-    >
-      <TrelloSidebar />
-      <div>
-        <button className="openbtn">☰ Open Sidebar</button>
-        <h2>Collapsed Sidebar</h2>
-        <p>
-          Click on the hamburger menu/bar icon to open the sidebar, and push
-          this content to the right.
-        </p>
+class TrelloBody extends Component {
+  render() {
+    return (
+      <div
+        className={`bg-[#0179bf6b] flex h-[calc(100vh-44px)] relative`}
+        id="body"
+      >
+        <TrelloSidebar />
+        <TrelloBoard />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default TrelloBody;
