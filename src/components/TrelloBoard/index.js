@@ -8,8 +8,6 @@ import TrelloCreate from "../TrelloCreate";
 import { sort, setActiveBoard } from "../../actions";
 import sorted from "../../utils/sort";
 
-// TODO: Fix performance issue
-
 class TrelloBoard extends PureComponent {
   componentDidMount() {
     // set active trello board here
