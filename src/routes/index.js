@@ -33,8 +33,8 @@ const Home = () => {
 const AppRouter = () => {
   return (
     <Router>
-      <Route path="/" exact component={Home} />
       <Route path="/:boardID" exact component={LandingPage} />
+      <Route path="/" exact component={Home} />
     </Router>
   );
 };
