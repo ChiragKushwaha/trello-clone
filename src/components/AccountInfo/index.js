@@ -14,13 +14,20 @@ const AccountInfo = ({ openNav, closeNav, sidePanelOpen }) => {
       }`}
     >
       <div className={`flex space-x-[8px] items-center`}>
-        <div className={`w-[32px] h-[32px] bg-black rounded-[4px]`}></div>
+        <img
+          src={
+            "https://media-exp1.licdn.com/dms/image/C5103AQGNNKb5MKdHmQ/profile-displayphoto-shrink_800_800/0/1565883227975?e=1637798400&v=beta&t=n7VZjtLCsWeZeVnc9_Qu8tWGigqC4szZ-3weKX8p6c0"
+          }
+          loading="lazy"
+          alt={"chirag_linkedIn_image"}
+          className={`w-[32px] h-[32px] bg-black rounded-[4px]`}
+        ></img>
         {sidePanelOpen && (
           <div className={``}>
             <div className={`font-semibold text-[14px]`}>
-              {language.trelloClone}
+              {language.trelloTitle}
             </div>
-            <div className={`font-medium text-[12px]`}>{language.free}</div>
+            <div className={`font-medium text-[12px]`}>{language.about}</div>
           </div>
         )}
       </div>

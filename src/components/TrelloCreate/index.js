@@ -11,6 +11,7 @@ class TrelloCreate extends React.PureComponent {
   state = {
     formOpen: false,
     text: "",
+    title: "",
   };
 
   openForm = () => {
@@ -25,10 +26,16 @@ class TrelloCreate extends React.PureComponent {
     });
   };
 
-  handleInputChange = (e) => {
-    this.setState({
-      text: e.target.value,
-    });
+  handleInputChange = (e, type) => {
+    if (type === "text") {
+      this.setState({
+        text: e.target.value,
+      });
+    } else {
+      this.setState({
+        title: e.target.value,
+      });
+    }
   };
 
   handleAddList = () => {
@@ -40,18 +47,23 @@ class TrelloCreate extends React.PureComponent {
         text: "",
       });
       dispatch(addList(text));
+
+      if (this.props.cb) {
+        this.props.cb();
+      }
     }
   };
 
   handleAddCard = () => {
     const { dispatch, listID } = this.props;
-    const { text } = this.state;
+    const { text, title } = this.state;
 
-    if (text) {
+    if (title) {
       this.setState({
         text: "",
+        title: "",
       });
-      dispatch(addCard(listID, text));
+      dispatch(addCard(listID, text, title));
     }
   };
 
@@ -75,11 +87,13 @@ class TrelloCreate extends React.PureComponent {
   };
 
   render() {
-    const { text } = this.state;
+    const { text, title } = this.state;
     const { list } = this.props;
     return this.state.formOpen ? (
       <TrelloForm
+        list={list}
         text={text}
+        title={title}
         onChange={this.handleInputChange}
         closeForm={this.closeForm}
       >

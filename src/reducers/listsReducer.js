@@ -1,4 +1,5 @@
 import { CONSTANTS } from "../actions";
+import sort from "../utils/sort";
 
 const initialState = {
   "list-0": {
@@ -23,7 +24,7 @@ const listsReducer = (state = initialState, action) => {
     }
 
     case CONSTANTS.ADD_CARD: {
-      const { listID, id } = action.payload;
+      const { listID, id, cards } = action.payload;
       const list = state[listID];
       list.cards.push(`card-${id}`);
       return { ...state, [listID]: list };
@@ -35,7 +36,7 @@ const listsReducer = (state = initialState, action) => {
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-
+        cards,
         type,
       } = action.payload;
 
@@ -49,7 +50,7 @@ const listsReducer = (state = initialState, action) => {
         const list = state[droppableIdStart];
         const card = list.cards.splice(droppableIndexStart, 1);
         list.cards.splice(droppableIndexEnd, 0, ...card);
-        return { ...state, [droppableIdStart]: list };
+        return { ...state, [droppableIdStart]: sort(list, cards, true) };
       }
 
       // other list
@@ -66,7 +67,7 @@ const listsReducer = (state = initialState, action) => {
         return {
           ...state,
           [droppableIdStart]: listStart,
-          [droppableIdEnd]: listEnd,
+          [droppableIdEnd]: sort(listEnd, cards, true),
         };
       }
       return state;

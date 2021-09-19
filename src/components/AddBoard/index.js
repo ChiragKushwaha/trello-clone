@@ -6,7 +6,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function AddBoard({ handleClose, open }) {
+import { addBoard } from "../../actions";
+import { connect } from "react-redux";
+
+function AddBoard({ handleClose, open, dispatch }) {
   const [newBoardTitle, setNewBoardTitle] = useState("");
 
   const handleChange = (e) => {
@@ -16,6 +19,7 @@ export default function AddBoard({ handleClose, open }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addBoard(newBoardTitle));
+    handleClose();
   };
 
   return (
@@ -24,6 +28,9 @@ export default function AddBoard({ handleClose, open }) {
       <DialogTitle>Create a new Board</DialogTitle>
       <DialogContent>
         <TextField
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          value={newBoardTitle}
           autoFocus
           margin="dense"
           id="name"
@@ -37,8 +44,10 @@ export default function AddBoard({ handleClose, open }) {
         <Button color="error" onClick={handleClose}>
           Cancel
         </Button>
-        <Button onClick={handleClose}>Create</Button>
+        <Button onClick={handleSubmit}>Create</Button>
       </DialogActions>
     </Dialog>
   );
 }
+
+export default connect()(AddBoard);

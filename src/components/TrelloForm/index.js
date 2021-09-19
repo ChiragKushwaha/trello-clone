@@ -4,26 +4,35 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Card, IconButton } from "@mui/material";
 
 const TrelloForm = React.memo(
-  ({ list, text = "", onChange, closeForm, children }) => {
+  ({ list, text = "", title = "", onChange, closeForm, children }) => {
     const placeholder = list
       ? "Enter list title..."
-      : "Enter a title for this card...";
+      : "Enter a card description...";
 
     const handleFocus = (e) => {
       e.target.select();
     };
 
     return (
-      <div className={`w-[284px] mb-[8px]`}>
-        <Card className={`w-full pt-[6px] px-[8px]`}>
+      <div className={`w-full mb-[8px]`}>
+        <Card className={`w-full pt-[6px] px-[8px] ${list ? "" : "space-y-2"}`}>
+          {list ? null : (
+            <input
+              className={`outline-none border-none w-full`}
+              autoFocus
+              value={title}
+              onFocus={handleFocus}
+              onChange={(e) => onChange(e, "title")}
+              placeholder={"Enter card title"}
+            />
+          )}
           <Textarea
-            className={`resize-none w-[284px] overflow-hidden outline-none border-none`}
+            className={` resize-none min-h-[84px] w-[284px] overflow-hidden outline-none border-none`}
             placeholder={placeholder}
-            autoFocus
+            autoFocus={list ? true : false}
             onFocus={handleFocus}
             value={text}
-            onChange={(e) => onChange(e)}
-            onBlur={closeForm}
+            onChange={(e) => onChange(e, "text")}
           />
         </Card>
         <div className={`my-[8px] flex items-center`}>

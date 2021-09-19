@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import DeleteIcon from "@mui/icons-material/Delete";
+import CloseIcon from "@mui/icons-material/Close";
 
 import TrelloCard from "../TrelloCard";
 import TrelloCreate from "../TrelloCreate";
@@ -75,7 +75,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                         className={`h-[34px]`}
                         onClick={handleDeleteList}
                       >
-                        <DeleteIcon
+                        <CloseIcon
                           className={`transition-opacity duration-300 ease-in-out opacity-40 hover:opacity-80`}
                         />
                       </IconButton>
@@ -87,15 +87,18 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {cards.map((card, index) => (
-                    <TrelloCard
-                      key={card.id}
-                      text={card.text}
-                      id={card.id}
-                      index={index}
-                      listID={listID}
-                    />
-                  ))}
+                  {cards.map((card, index) => {
+                    return (
+                      <TrelloCard
+                        key={card.id}
+                        text={card.text}
+                        id={card.id}
+                        index={index}
+                        title={card.title}
+                        listID={listID}
+                      />
+                    );
+                  })}
                   {provided.placeholder}
                   <TrelloCreate listID={listID} />
                 </div>

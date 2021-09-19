@@ -22,6 +22,7 @@ export const sort = (
 ) => {
   return (dispatch, getState) => {
     const boardID = getState().activeBoard;
+    const cards = getState().cards;
     dispatch({
       type: CONSTANTS.DRAG_HAPPENED,
       payload: {
@@ -32,6 +33,7 @@ export const sort = (
         draggableId,
         type,
         boardID,
+        cards,
       },
     });
   };
